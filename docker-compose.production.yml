@@ -1,0 +1,172 @@
+# SmartSentinel Docker Compose Configuration
+# Production-ready local development and testing environment
+
+version: '3.8'
+
+services:
+  # Main SmartSentinel application
+  sentinel:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: smart-sentinel
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - AUTO_PAUSE_ENABLED=${AUTO_PAUSE_ENABLED:-false}
+      - GNN_SERVER_URL=http://gnn-server:8765
+      - LOG_LEVEL=${LOG_LEVEL:-info}
+      - ALCHEMY_KEY=${ALCHEMY_KEY}
+      - INFURA_KEY=${INFURA_KEY}
+      - QUICKNODE_KEY=${QUICKNODE_KEY}
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - PAGERDUTY_SERVICE_KEY=${PD_SERVICE_KEY}
+      - DRY_RUN=${DRY_RUN:-true}
+      - ETH_RPC_URL=${ETH_RPC_URL:-https://eth-mainnet.g.alchemy.com/v2/demo}
+    volumes:
+      - ./config:/app/config:ro
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./models:/app/models:ro
+    depends_on:
+      gnn-server:
+        condition: service_healthy
+      anvil:
+        condition: service_started
+    networks:
+      - smartsentinel-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+
+  # GNN ML Pipeline Inference Server
+  gnn-server:
+    build:
+      context: ./ml-pipeline
+      dockerfile: Dockerfile
+    container_name: smart-sentinel-gnn
+    restart: unless-stopped
+    ports:
+      - "8765:8765"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - LOG_LEVEL=INFO
+      - MODEL_PATH=/app/models
+    volumes:
+      - ./models:/app/models
+      - ./ml-pipeline:/app/ml-pipeline
+    networks:
+      - smartsentinel-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8765/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
+        reservations:
+          cpus: '0.25'
+          memory: 256M
+
+  # Anvil - Ethereum fork for simulation testing
+  anvil:
+    image: ghcr.io/foundry-rs/foundry:latest
+    container_name: smart-sentinel-anvil
+    command: >
+      anvil
+      --fork-url ${ETH_RPC_URL:-https://eth-mainnet.g.alchemy.com/v2/demo}
+      --fork-block-number 18000000
+      --port 8545
+      --host 0.0.0.0
+      --chain-id 1
+      --blocks-per-epoch-field=0
+    ports:
+      - "8545:8545"
+    networks:
+      - smartsentinel-net
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+
+  # PostgreSQL for incident log (optional - for production deployments)
+  postgres:
+    image: postgres:15-alpine
+    container_name: smartsentinel-db
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=smartsentinel
+      - POSTGRES_USER=sentinel
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-changeme}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - smartsentinel-net
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "sentinel"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+    profiles:
+      - postgres
+
+  # Redis for caching (optional)
+  redis:
+    image: redis:7-alpine
+    container_name: smartsentinel-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    networks:
+      - smartsentinel-net
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    command: redis-server --appendonly yes
+    volumes:
+      - redis-data:/data
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: 128M
+    profiles:
+      - redis
+
+networks:
+  smartsentinel-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16
+
+volumes:
+  postgres-data:
+  redis-data:

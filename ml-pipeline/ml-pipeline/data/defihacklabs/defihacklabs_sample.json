@@ -1,0 +1,252 @@
+[
+  {
+    "bytecode": "608060405236f155a9059cbbf155612033615260f3",
+    "vuln_type": "reentrancy",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "608060405236f155a9059cbbf155612033615260f3",
+    "vuln_type": "reentrancy",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "608060405236f155a9059cbbf155612033615260f3",
+    "vuln_type": "reentrancy",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "608060405236f155a9059cbbf155612033615260f3",
+    "vuln_type": "reentrancy",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "608060405236f155a9059cbbf155612033615260f3",
+    "vuln_type": "reentrancy",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "608060405236f155a9059cbbf155612033615260f3",
+    "vuln_type": "reentrancy",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "608060405236f155a9059cbbf155612033615260f3",
+    "vuln_type": "reentrancy",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "608060405236f155a9059cbbf155612033615260f3",
+    "vuln_type": "reentrancy",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "608060405236f155a9059cbbf155612033615260f3",
+    "vuln_type": "reentrancy",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "608060405236f155a9059cbbf155612033615260f3",
+    "vuln_type": "reentrancy",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "6080604052367ff36a538ed173602c7979a9059cbb612033615260f3",
+    "vuln_type": "flash_loan",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "6080604052367ff36a538ed173602c7979a9059cbb612033615260f3",
+    "vuln_type": "flash_loan",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "6080604052367ff36a538ed173602c7979a9059cbb612033615260f3",
+    "vuln_type": "flash_loan",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "6080604052367ff36a538ed173602c7979a9059cbb612033615260f3",
+    "vuln_type": "flash_loan",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "6080604052367ff36a538ed173602c7979a9059cbb612033615260f3",
+    "vuln_type": "flash_loan",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "6080604052367ff36a538ed173602c7979a9059cbb612033615260f3",
+    "vuln_type": "flash_loan",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "6080604052367ff36a538ed173602c7979a9059cbb612033615260f3",
+    "vuln_type": "flash_loan",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "6080604052367ff36a538ed173602c7979a9059cbb612033615260f3",
+    "vuln_type": "flash_loan",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "6080604052367ff36a538ed173602c7979a9059cbb612033615260f3",
+    "vuln_type": "flash_loan",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "6080604052367ff36a538ed173602c7979a9059cbb612033615260f3",
+    "vuln_type": "flash_loan",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "608060405236fa5455a9059cbb612033615260f3",
+    "vuln_type": "oracle_manipulation",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "608060405236fa5455a9059cbb612033615260f3",
+    "vuln_type": "oracle_manipulation",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "608060405236fa5455a9059cbb612033615260f3",
+    "vuln_type": "oracle_manipulation",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "608060405236fa5455a9059cbb612033615260f3",
+    "vuln_type": "oracle_manipulation",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "608060405236fa5455a9059cbb612033615260f3",
+    "vuln_type": "oracle_manipulation",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "608060405236fa5455a9059cbb612033615260f3",
+    "vuln_type": "oracle_manipulation",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "608060405236fa5455a9059cbb612033615260f3",
+    "vuln_type": "oracle_manipulation",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "608060405236fa5455a9059cbb612033615260f3",
+    "vuln_type": "oracle_manipulation",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "608060405236fa5455a9059cbb612033615260f3",
+    "vuln_type": "oracle_manipulation",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "608060405236fa5455a9059cbb612033615260f3",
+    "vuln_type": "oracle_manipulation",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "608060405236f4545547612033615260f3",
+    "vuln_type": "access_control",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "608060405236f4545547612033615260f3",
+    "vuln_type": "access_control",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "608060405236f4545547612033615260f3",
+    "vuln_type": "access_control",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "608060405236f4545547612033615260f3",
+    "vuln_type": "access_control",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "608060405236f4545547612033615260f3",
+    "vuln_type": "access_control",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "608060405236f4545547612033615260f3",
+    "vuln_type": "access_control",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "608060405236f4545547612033615260f3",
+    "vuln_type": "access_control",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "608060405236f4545547612033615260f3",
+    "vuln_type": "access_control",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "608060405236f4545547612033615260f3",
+    "vuln_type": "access_control",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "608060405236f4545547612033615260f3",
+    "vuln_type": "access_control",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "60806040523660505657612033615260f3",
+    "vuln_type": "other",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "60806040523660505657612033615260f3",
+    "vuln_type": "other",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "60806040523660505657612033615260f3",
+    "vuln_type": "other",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "60806040523660505657612033615260f3",
+    "vuln_type": "other",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "60806040523660505657612033615260f3",
+    "vuln_type": "other",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "60806040523660505657612033615260f3",
+    "vuln_type": "other",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "60806040523660505657612033615260f3",
+    "vuln_type": "other",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "60806040523660505657612033615260f3",
+    "vuln_type": "other",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "60806040523660505657612033615260f3",
+    "vuln_type": "other",
+    "source": "synthetic_balanced"
+  },
+  {
+    "bytecode": "60806040523660505657612033615260f3",
+    "vuln_type": "other",
+    "source": "synthetic_balanced"
+  }
+]

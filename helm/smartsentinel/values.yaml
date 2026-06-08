@@ -1,0 +1,269 @@
+# Default values for SmartSentinel Helm Chart
+# These are overrides for production deployments
+
+replicaCount: 3
+
+image:
+  repository: smartsentinel/smartsentinel
+  pullPolicy: IfNotPresent
+  tag: "0.2.0"
+
+imagePullSecrets: []
+
+# Sentinel configuration
+sentinel:
+  environment: production
+  logLevel: info
+  autoPauseEnabled: false
+  dryRun: true
+  chains:
+    - ethereum
+    - arbitrum
+    - optimism
+    - base
+    - polygon
+
+# RPC credentials (use Kubernetes secrets in production)
+rpc:
+  alchemyApiKey:
+    enabled: true
+    secretName: alchemy-credentials
+    secretKey: api-key
+  infuraApiKey:
+    enabled: true
+    secretName: infura-credentials
+    secretKey: api-key
+  quicknodeApiKey:
+    enabled: true
+    secretName: quicknode-credentials
+    secretKey: api-key
+
+# GNN Server configuration
+gnnServer:
+  enabled: true
+  image:
+    repository: smartsentinel/gnn-server
+    tag: "0.2.0"
+  replicas: 2
+  resources:
+    limits:
+      cpu: 1000m
+      memory: 1Gi
+    requests:
+      cpu: 250m
+      memory: 256Mi
+
+# Alert integration
+alerts:
+  telegram:
+    enabled: false
+    botToken:
+      secretName: telegram-credentials
+      secretKey: bot-token
+    chatId: "-1001234567890"
+  pagerduty:
+    enabled: false
+    serviceKey:
+      secretName: pagerduty-credentials
+      secretKey: service-key
+
+# Guardian wallet keys (NEVER store in values.yaml)
+# Use Kubernetes secrets with encrypted values
+guardianKeys:
+  ethereum:
+    secretName: ethereum-guardian
+    secretKey: private-key
+  arbitrum:
+    secretName: arbitrum-guardian
+    secretKey: private-key
+
+# Anvil fork configuration
+anvil:
+  enabled: true
+  image: ghcr.io/foundry-rs/foundry:latest
+  resources:
+    limits:
+      cpu: 1000m
+      memory: 512Mi
+    requests:
+      cpu: 250m
+      memory: 128Mi
+  forkUrl: https://eth-mainnet.g.alchemy.com/v2/demo
+  forkBlockNumber: 18000000
+
+# PostgreSQL configuration
+postgres:
+  enabled: true
+  image: postgres:15-alpine
+  database: smartsentinel
+  username: sentinel
+  persistence:
+    enabled: true
+    size: 10Gi
+    storageClass: fast-ssd
+  resources:
+    limits:
+      cpu: 500m
+      memory: 256Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+
+# Redis configuration
+redis:
+  enabled: true
+  image: redis:7-alpine
+  persistence:
+    enabled: true
+    size: 5Gi
+    storageClass: fast-ssd
+  resources:
+    limits:
+      cpu: 250m
+      memory: 128Mi
+    requests:
+      cpu: 50m
+      memory: 64Mi
+
+# Resource limits
+resources:
+  limits:
+    cpu: 2000m
+    memory: 2Gi
+  requests:
+    cpu: 500m
+    memory: 512Mi
+
+# Liveness and readiness probes
+livenessProbe:
+  httpGet:
+    path: /health
+    port: 3000
+  initialDelaySeconds: 30
+  periodSeconds: 10
+  timeoutSeconds: 5
+  successThreshold: 1
+  failureThreshold: 3
+
+readinessProbe:
+  httpGet:
+    path: /ready
+    port: 3000
+  initialDelaySeconds: 10
+  periodSeconds: 5
+  timeoutSeconds: 3
+  successThreshold: 1
+  failureThreshold: 3
+
+# Pod anti-affinity (spread across nodes)
+podAntiAffinity:
+  enabled: true
+  topologyKey: kubernetes.io/hostname
+
+# Node affinity (prefer nodes with GPU for ML)
+nodeAffinity:
+  enabled: false
+  gpuNodes: false
+
+# Autoscaling
+autoscaling:
+  enabled: true
+  minReplicas: 3
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 70
+  targetMemoryUtilizationPercentage: 80
+
+# Service configuration
+service:
+  type: ClusterIP
+  port: 3000
+  annotations: {}
+
+# Ingress configuration
+ingress:
+  enabled: false
+  className: nginx
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: "10m"
+  hosts:
+    - host: smartsentinel.example.com
+      paths:
+        - path: /
+          pathType: Prefix
+          service: sentinel
+          port: 3000
+  tls:
+    - secretName: smartsentinel-tls
+      hosts:
+        - smartsentinel.example.com
+
+# Monitoring configuration
+monitoring:
+  prometheus:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+      interval: 30s
+      scrapeTimeout: 10s
+  grafana:
+    enabled: true
+    dashboard:
+      enabled: true
+
+# Security context
+securityContext:
+  runAsNonRoot: true
+  runAsUser: 1001
+  runAsGroup: 1001
+  fsGroup: 1001
+  seLinuxOptions:
+    - type: spc_t
+      level: s0:c15,c20
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: false
+  capabilities:
+    drop:
+      - ALL
+
+# Pod security policy
+podSecurityPolicy:
+  create: false
+  privileged: false
+  allowedHostPaths: []
+
+# Persistence
+persistence:
+  enabled: true
+  accessMode: ReadWriteMany
+  size: 10Gi
+  storageClass: fast-ssd
+
+# ConfigMaps and Secrets
+configMaps:
+  chains: config/chains.yml
+  thresholds: config/thresholds.yml
+  contracts: config/monitored-contracts.yml
+
+secrets:
+  gnnModel: models/gnn-vuln-classifier
+  guardianKeys: ~
+
+# Tolerations
+tolerations: []
+
+# Node selector
+nodeSelector: {}
+
+# Priority class
+priorityClassName: ""
+
+# Service account
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+# Pod labels
+podLabels: {}
+podAnnotations: {}

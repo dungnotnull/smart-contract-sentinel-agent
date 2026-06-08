@@ -1,0 +1,67 @@
+# SmartSentinel — Chain Configuration
+# Copy this file to chains.yml and fill in your RPC endpoints.
+# NEVER commit real API keys — use environment variable references.
+
+chains:
+  - name: ethereum
+    chainId: 1
+    nativeToken: ETH
+    enabled: true
+    flashbotsRelay: "https://relay.flashbots.net"
+    rpcEndpoints:
+      - name: alchemy-primary
+        url: "https://eth-mainnet.g.alchemy.com/v2/${ALCHEMY_KEY}"
+        wsUrl: "wss://eth-mainnet.g.alchemy.com/v2/${ALCHEMY_KEY}"
+      - name: infura-secondary
+        url: "https://mainnet.infura.io/v3/${INFURA_KEY}"
+        wsUrl: "wss://mainnet.infura.io/ws/v3/${INFURA_KEY}"
+      - name: quicknode-tertiary
+        url: "https://example.quiknode.pro/${QUICKNODE_KEY}"
+
+  - name: arbitrum
+    chainId: 42161
+    nativeToken: ETH
+    enabled: true
+    rpcEndpoints:
+      - name: alchemy-arb
+        url: "https://arb-mainnet.g.alchemy.com/v2/${ALCHEMY_KEY}"
+      - name: infura-arb
+        url: "https://arbitrum-mainnet.infura.io/v3/${INFURA_KEY}"
+      - name: quicknode-arb
+        url: "https://example.quiknode.pro/${QUICKNODE_KEY}"
+
+  - name: optimism
+    chainId: 10
+    nativeToken: ETH
+    enabled: true
+    rpcEndpoints:
+      - name: alchemy-opt
+        url: "https://opt-mainnet.g.alchemy.com/v2/${ALCHEMY_KEY}"
+      - name: infura-opt
+        url: "https://optimism-mainnet.infura.io/v3/${INFURA_KEY}"
+      - name: quicknode-opt
+        url: "https://example.quiknode.pro/${QUICKNODE_KEY}"
+
+  - name: base
+    chainId: 8453
+    nativeToken: ETH
+    enabled: true
+    rpcEndpoints:
+      - name: alchemy-base
+        url: "https://base-mainnet.g.alchemy.com/v2/${ALCHEMY_KEY}"
+      - name: infura-base
+        url: "https://base-mainnet.infura.io/v3/${INFURA_KEY}"
+      - name: quicknode-base
+        url: "https://example.quiknode.pro/${QUICKNODE_KEY}"
+
+  - name: polygon
+    chainId: 137
+    nativeToken: POL
+    enabled: true
+    rpcEndpoints:
+      - name: alchemy-poly
+        url: "https://polygon-mainnet.g.alchemy.com/v2/${ALCHEMY_KEY}"
+      - name: infura-poly
+        url: "https://polygon-mainnet.infura.io/v3/${INFURA_KEY}"
+      - name: quicknode-poly
+        url: "https://example.quiknode.pro/${QUICKNODE_KEY}"

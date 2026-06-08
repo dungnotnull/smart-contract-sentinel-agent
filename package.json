@@ -1,0 +1,66 @@
+{
+  "name": "smart-sentinel",
+  "version": "0.1.0",
+  "description": "Real-time, multi-chain autonomous defense agent that detects, simulates, and neutralizes smart contract attacks",
+  "main": "dist/main.js",
+  "type": "module",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "dev": "tsx watch src/main.ts",
+    "start": "node dist/main.js",
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:replay": "vitest run tests/integration/replay-framework.test.ts",
+    "test:simulation": "vitest run tests/integration/simulation/",
+    "replay-exploit": "tsx scripts/replay-framework.ts replay",
+    "backtest": "tsx scripts/replay-framework.ts backtest",
+    "tune-thresholds": "tsx scripts/replay-framework.ts tune-thresholds",
+    "fixtures-generator": "tsx scripts/fixtures-generator.ts",
+    "lint": "eslint src/ tests/",
+    "lint:fix": "eslint src/ tests/ --fix",
+    "status": "tsx scripts/status.ts",
+    "incident-log": "tsx scripts/incident-log.ts",
+    "add-monitored-contract": "tsx scripts/add-monitored-contract.ts",
+    "clean": "rimraf dist"
+  },
+  "keywords": [
+    "smart-contract",
+    "security",
+    "defi",
+    "mempool",
+    "flashbots",
+    "gnn",
+    "sentinel"
+  ],
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@flashbots/ethers-provider-bundle": "1.0.0",
+    "better-sqlite3": "11.8.1",
+    "bloom-filters": "3.0.4",
+    "commander": "^14.0.3",
+    "dotenv": "16.4.7",
+    "ethers": "6.13.4",
+    "pino": "9.6.0",
+    "pino-pretty": "13.0.0",
+    "viem": "2.28.0",
+    "yaml": "2.7.0",
+    "zod": "3.24.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.18.0",
+    "@types/better-sqlite3": "7.6.13",
+    "@types/node": "22.13.0",
+    "@vitest/coverage-v8": "3.1.1",
+    "eslint": "9.18.0",
+    "rimraf": "6.0.1",
+    "tsx": "4.19.2",
+    "typescript": "5.7.3",
+    "typescript-eslint": "8.22.0",
+    "vitest": "3.1.1"
+  }
+}

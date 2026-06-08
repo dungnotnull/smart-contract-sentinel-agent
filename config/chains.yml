@@ -1,0 +1,71 @@
+chains:
+  - name: ethereum
+    chainId: 1
+    rpcEndpoints:
+      - name: alchemy
+        url: "https://eth-mainnet.g.alchemy.com/v2/test-key"
+      - name: infura
+        url: "https://mainnet.infura.io/v3/test-key"
+      - name: quicknode
+        url: "https://eth.quiknode.pro/test-key"
+    nativeToken: ETH
+    enabled: true
+    flashbotsRelay: "https://relay.flashbots.net"
+
+  - name: arbitrum
+    chainId: 42161
+    rpcEndpoints:
+      - name: alchemy
+        url: "https://arb-mainnet.g.alchemy.com/v2/test-key"
+      - name: infura
+        url: "https://arbitrum-mainnet.infura.io/v3/test-key"
+      - name: public
+        url: "https://arb1.arbitrum.io/rpc"
+    sequencerUrl: "https://sequencer.arbitrum.io/seq"
+    nativeToken: ETH
+    enabled: true
+    blockTime: 1
+    pauseMethod: "setEmergencyPaused(bool)"
+
+  - name: optimism
+    chainId: 10
+    rpcEndpoints:
+      - name: alchemy
+        url: "https://opt-mainnet.g.alchemy.com/v2/test-key"
+      - name: infura
+        url: "https://optimism-mainnet.infura.io/v3/test-key"
+      - name: public
+        url: "https://mainnet.optimism.io"
+    nativeToken: ETH
+    enabled: true
+    blockTime: 2
+    pauseMethod: "pause()"
+
+  - name: base
+    chainId: 8453
+    rpcEndpoints:
+      - name: alchemy
+        url: "https://base-mainnet.g.alchemy.com/v2/test-key"
+      - name: infura
+        url: "https://base-mainnet.infura.io/v3/test-key"
+      - name: public
+        url: "https://mainnet.base.org"
+    nativeToken: ETH
+    enabled: true
+    flashbotsRelay: "https://relay.flashbots.net"
+    blockTime: 2
+    pauseMethod: "pause()"
+
+  - name: polygon
+    chainId: 137
+    rpcEndpoints:
+      - name: alchemy
+        url: "https://polygon-mainnet.g.alchemy.com/v2/test-key"
+      - name: infura
+        url: "https://polygon-mainnet.infura.io/v3/test-key"
+      - name: public
+        url: "https://polygon-rpc.com"
+    nativeToken: MATIC
+    enabled: true
+    blockTime: 2
+    pauseMethod: "pause()"

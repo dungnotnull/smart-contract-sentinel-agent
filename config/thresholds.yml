@@ -1,0 +1,16 @@
+gnn:
+  threatThreshold: 0.75
+  requestTimeoutMs: 200
+
+simulation:
+  drainThresholdPct: 3
+  timeoutMs: 2000
+  oracleDeltaThresholdPct: 50
+
+preFilter:
+  gasAnomalyMultiplier: 2
+  gasPriceAnomalyMultiplier: 3
+
+response:
+  gasPremiumPct: 15
+  maxRetryBlocks: 2

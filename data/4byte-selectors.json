@@ -1,0 +1,187 @@
+{
+  "$schema": "https://raw.githubusercontent.com/smart-sentinel/4byte-selectors/main/schema.json",
+  "version": "1.0.0",
+  "lastUpdated": "2026-06-08",
+  "description": "Known suspicious and attack-related function selectors for SmartSentinel pre-filter. Seeded from DeFiHackLabs, 4byte.directory, and FlashGuard research.",
+  "sources": [
+    "DeFiHackLabs (https://github.com/SunWeb3Sec/DeFiHackLabs)",
+    "4byte.directory (https://www.4byte.directory/)",
+    "FlashGuard (ACM CODASPY 2025)"
+  ],
+  "selectors": {
+    "0x5c11d795": {
+      "name": "swapExactTokensForTokensSupportingFeeOnTransferTokens",
+      "category": "swap",
+      "risk": "medium",
+      "description": "Common DEX swap with fee-on-transfer support — frequently used in flash loan attacks"
+    },
+    "0x38ed1739": {
+      "name": "swapExactTokensForTokens",
+      "category": "swap",
+      "risk": "medium",
+      "description": "Standard DEX swap — often appears in attack transaction traces"
+    },
+    "0x8803dbee": {
+      "name": "swapTokensForExactTokens",
+      "category": "swap",
+      "risk": "medium",
+      "description": "DEX swap variant — used in oracle manipulation attacks"
+    },
+    "0x7ff36ab5": {
+      "name": "swapExactETHForTokens",
+      "category": "swap",
+      "risk": "medium",
+      "description": "ETH to token swap — common in sandwich and front-running attacks"
+    },
+    "0x18cbafe5": {
+      "name": "swapExactTokensForETH",
+      "category": "swap",
+      "risk": "medium",
+      "description": "Token to ETH swap — used in drain-and-exit attacks"
+    },
+    "0xe8e33700": {
+      "name": "addLiquidity",
+      "category": "liquidity",
+      "risk": "low",
+      "description": "Add liquidity to AMM pool — manipulation vector in some attacks"
+    },
+    "0xf305d719": {
+      "name": "addLiquidityETH",
+      "category": "liquidity",
+      "risk": "low",
+      "description": "Add ETH liquidity — can be used to manipulate pool ratios"
+    },
+    "0x2e1a7d4d": {
+      "name": "withdraw",
+      "category": "withdrawal",
+      "risk": "high",
+      "description": "Generic withdraw — reentrancy attack entry point in many exploits"
+    },
+    "0x3ccfd60b": {
+      "name": "withdraw",
+      "category": "withdrawal",
+      "risk": "high",
+      "description": "Another withdraw variant — used in multiple reentrancy exploits"
+    },
+    "0xa9059cbb": {
+      "name": "transfer",
+      "category": "transfer",
+      "risk": "low",
+      "description": "ERC20 transfer — appears in almost all attack traces as fund movement"
+    },
+    "0x095ea7b3": {
+      "name": "approve",
+      "category": "approval",
+      "risk": "medium",
+      "description": "ERC20 approve — unlimited approvals are attack prerequisites"
+    },
+    "0x23b872dd": {
+      "name": "transferFrom",
+      "category": "transfer",
+      "risk": "medium",
+      "description": "ERC20 transferFrom — used in drain attacks with prior approval"
+    },
+    "0x1fefcf4c": {
+      "name": "flashLoan",
+      "category": "flash_loan",
+      "risk": "high",
+      "description": "Aave V2 flashLoan — primary entry point for flash loan attacks"
+    },
+    "0xab9c4dc5": {
+      "name": "flashLoan",
+      "category": "flash_loan",
+      "risk": "high",
+      "description": "Aave V3 flashLoan — primary entry point for flash loan attacks"
+    },
+    "0x884059e2": {
+      "name": "flashLoanSimple",
+      "category": "flash_loan",
+      "risk": "high",
+      "description": "Aave V3 simple flashLoan without callback"
+    },
+    "0x5ae401dc": {
+      "name": "multicall",
+      "category": "multicall",
+      "risk": "high",
+      "description": "Multicall aggregator — wraps multiple actions in single tx, common in attacks"
+    },
+    "0xac9650d8": {
+      "name": "multicall",
+      "category": "multicall",
+      "risk": "high",
+      "description": "Another multicall variant — Uniswap V3 style"
+    },
+    "0x4aa4a4fc": {
+      "name": "WETH withdraw",
+      "category": "withdrawal",
+      "risk": "medium",
+      "description": "WETH withdraw — used in wrap/unwrap attacks and flash loan exit"
+    },
+    "0xd0e30db0": {
+      "name": "WETH deposit",
+      "category": "deposit",
+      "risk": "low",
+      "description": "WETH deposit — appears in attack prep phase"
+    },
+    "0x12aa3caf": {
+      "name": "executeMetaTransaction",
+      "category": "meta_tx",
+      "risk": "high",
+      "description": "Meta-transaction execution — used by MEV bots and attack contracts"
+    },
+    "0x0c53c51c": {
+      "name": "finalizeExit",
+      "category": "exit",
+      "risk": "high",
+      "description": "Exit finalization — used in bridge and staking drain attacks"
+    },
+    "0xf3fef3a3": {
+      "name": "withdraw",
+      "category": "withdrawal",
+      "risk": "high",
+      "description": "Another withdraw variant — used in governance and staking exploits"
+    },
+    "0x51cff8d9": {
+      "name": "withdrawETH",
+      "category": "withdrawal",
+      "risk": "high",
+      "description": "ETH withdrawal — used in bridge drain attacks"
+    },
+    "0x3f4ba83a": {
+      "name": "unpause",
+      "category": "pause",
+      "risk": "high",
+      "description": "Unpause — attacker may try to unpause before draining"
+    },
+    "0x8456cb59": {
+      "name": "pause",
+      "category": "pause",
+      "risk": "low",
+      "description": "Pause — what SmartSentinel calls to defend"
+    },
+    "0x42966c68": {
+      "name": "burn",
+      "category": "burn",
+      "risk": "medium",
+      "description": "Token burn — can be used to manipulate supply in attacks"
+    },
+    "0xf0469461": {
+      "name": "skim",
+      "category": "amm_manipulation",
+      "risk": "high",
+      "description": "Uniswap skim — AMM balance manipulation vector"
+    },
+    "0x2b298946": {
+      "name": "sync",
+      "category": "amm_manipulation",
+      "risk": "high",
+      "description": "Uniswap sync — reserve manipulation vector"
+    },
+    "0x1b2e1f63": {
+      "name": "withdrawStuck",
+      "category": "admin",
+      "risk": "high",
+      "description": "Admin withdrawal — often a backdoor or rugpull function"
+    }
+  }
+}

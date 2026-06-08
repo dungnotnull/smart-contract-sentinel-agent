@@ -1,0 +1,19 @@
+# SmartSentinel — Detection Thresholds
+# Copy this file to thresholds.yml and customize for your deployment.
+
+gnn:
+  threatThreshold: 0.75    # GNN threat score threshold (0.0-1.0). Must exceed this to trigger PAUSE.
+  requestTimeoutMs: 200    # Timeout for GNN inference server requests
+
+simulation:
+  drainThresholdPct: 3.0   # % TVL drain that triggers escalation (default: 3%)
+  timeoutMs: 2000          # Max simulation time before aborting (ms)
+  oracleDeltaThresholdPct: 50  # % oracle price manipulation threshold
+
+preFilter:
+  gasAnomalyMultiplier: 2.0     # Gas limit > (p95 * this) = anomaly
+  gasPriceAnomalyMultiplier: 3.0  # Gas price > (p95 * this) = anomaly
+
+response:
+  gasPremiumPct: 15        # % gas premium over attack tx for front-running
+  maxRetryBlocks: 2        # Max blocks to wait for bundle inclusion before alerting human

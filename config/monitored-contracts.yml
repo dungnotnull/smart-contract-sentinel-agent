@@ -1,0 +1,15 @@
+contracts:
+  - name: "Test Pool"
+    chain: ethereum
+    address: "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2"
+    pauseMethod: "setPoolPause(bool)"
+    guardianAddress: "0x1234567890123456789012345678901234567890"
+    guardianPrivateKeyEnv: "TEST_GUARDIAN_KEY"
+    tvlUsd: 1000000000
+    drainThresholdPct: 3.0
+    gnnThreshold: 0.80
+    notify:
+      telegramChatId: "-1000000000000"
+      pagerdutyServiceKeyEnv: "PD_TEST_KEY"
+    addedBy: human-review
+    addedAt: "2026-06-08"

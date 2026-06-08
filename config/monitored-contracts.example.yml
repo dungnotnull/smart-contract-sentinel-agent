@@ -1,0 +1,35 @@
+# SmartSentinel — Monitored Contracts Allowlist
+# Copy this file to monitored-contracts.yml and add contracts to defend.
+# WARNING: Only add contracts after human review. Agents MUST NOT self-modify this file.
+
+contracts:
+  - name: "Aave V3 Pool"
+    chain: ethereum
+    address: "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2"
+    pauseMethod: "setPoolPause(bool)"
+    guardianAddress: "0x0000000000000000000000000000000000000000"  # Replace with real guardian multisig
+    guardianPrivateKeyEnv: "AAVE_GUARDIAN_KEY"  # Environment variable name (never the actual key)
+    tvlUsd: 5000000000
+    drainThresholdPct: 3.0
+    gnnThreshold: 0.80
+    notify:
+      telegramChatId: "-1000000000000"       # Replace with real Telegram chat ID
+      pagerdutyServiceKeyEnv: "PD_AAVE_KEY"  # Environment variable name
+    addedBy: human-review
+    addedAt: "2026-05-31"
+
+  # Example: Compound V3 USDC market on Arbitrum
+  # - name: "Compound V3 USDC"
+  #   chain: arbitrum
+  #   address: "0xA5ED590cc6203B3f8465280b0A7D250c345704Ca"
+  #   pauseMethod: "pause(bool)"
+  #   guardianAddress: "0x0000000000000000000000000000000000000000"
+  #   guardianPrivateKeyEnv: "COMPOUND_GUARDIAN_KEY"
+  #   tvlUsd: 2000000000
+  #   drainThresholdPct: 3.0
+  #   gnnThreshold: 0.80
+  #   notify:
+  #     telegramChatId: "-1000000000000"
+  #     pagerdutyServiceKeyEnv: "PD_COMPOUND_KEY"
+  #   addedBy: human-review
+  #   addedAt: "2026-06-01"

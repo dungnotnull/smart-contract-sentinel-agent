@@ -1,0 +1,27 @@
+apiVersion: v2
+name: smartsentinel
+description: SmartSentinel - Real-time autonomous defense agent for DeFi protocols
+type: application
+version: 1.0.0
+appVersion: "0.2.0"
+keywords:
+  - blockchain
+  - security
+  - defi
+  - smart-contracts
+  - threat-detection
+home: https://github.com/smartsentinel/smartsentinel
+sources:
+  - https://github.com/smartsentinel/smartsentinel
+maintainers:
+  - name: SmartSentinel Team
+    email: team@smartsentinel.io
+annotations:
+  artifacthub.io/links: |
+    - name: Documentation
+      url: https://docs.smartsentinel.io
+    - name: Support
+      url: https://github.com/smartsentinel/smartsentinel/issues
+  artifacthub.io/operator: "false"
+  artifacthub.io/prerelease: "false"
+  artifacthub.io/containsSecurityUpdates: "true"

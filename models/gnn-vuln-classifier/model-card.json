@@ -1,0 +1,23 @@
+{
+  "model_version": "1.0.0",
+  "model_type": "DA-GNN",
+  "status": "heuristic_fallback",
+  "training_dataset": "SmartBugs + DeFiHackLabs",
+  "num_contracts_train": 47587,
+  "num_contracts_val": 5950,
+  "num_contracts_test": 5950,
+  "f1_score": null,
+  "false_positive_rate": null,
+  "vulnerability_types": {
+    "reentrancy": {"precision": null, "recall": null, "f1": null},
+    "flash_loan": {"precision": null, "recall": null, "f1": null},
+    "oracle_manipulation": {"precision": null, "recall": null, "f1": null},
+    "access_control": {"precision": null, "recall": null, "f1": null},
+    "other": {"precision": null, "recall": null, "f1": null}
+  },
+  "inference_latency_target_ms_p95": 200,
+  "onnx_export_available": false,
+  "trained_weights_path": null,
+  "created_at": "2026-06-08",
+  "notes": "Heuristic fallback active until model is trained"
+}
